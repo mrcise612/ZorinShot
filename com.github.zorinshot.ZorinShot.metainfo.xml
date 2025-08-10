@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.github.zorinshot.ZorinShot</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>ZorinShot</name>
+  <summary>Wayland-compatible screenshot tool with autosave and annotation</summary>
+  
+  <description>
+    <p>
+      ZorinShot is a modern, Wayland-compatible screenshot tool designed specifically for 
+      Linux desktop environments. It provides an intuitive interface for capturing, 
+      annotating, and saving screenshots with advanced autosave functionality.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Wayland-native screenshot capture with X11 fallback support</li>
+      <li>Interactive region selection with visual feedback</li>
+      <li>Comprehensive annotation tools (pen, arrow, rectangle, text)</li>
+      <li>Autosave with customizable default locations</li>
+      <li>Quick Save and Save As functionality</li>
+      <li>Clipboard integration for instant sharing</li>
+      <li>Persistent settings and preferences</li>
+      <li>Keyboard shortcuts for efficient workflow</li>
+      <li>Support for PNG and JPEG formats</li>
+    </ul>
+    <p>
+      Perfect for content creators, developers, and anyone who needs to capture and 
+      annotate screenshots regularly. ZorinShot eliminates the friction of traditional 
+      screenshot workflows with its intelligent autosave system and streamlined interface.
+    </p>
+  </description>
+  
+  <launchable type="desktop-id">com.github.zorinshot.ZorinShot.desktop</launchable>
+  
+  <screenshots>
+    <screenshot type="default">
+      <caption>ZorinShot main interface with annotation tools</caption>
+      <image>https://raw.githubusercontent.com/zorinshot/zorinshot/main/screenshots/main-interface.png</image>
+    </screenshot>
+    <screenshot>
+      <caption>Preferences dialog with autosave configuration</caption>
+      <image>https://raw.githubusercontent.com/zorinshot/zorinshot/main/screenshots/preferences.png</image>
+    </screenshot>
+  </screenshots>
+  
+  <url type="homepage">https://github.com/zorinshot/zorinshot</url>
+  <url type="bugtracker">https://github.com/zorinshot/zorinshot/issues</url>
+  <url type="help">https://github.com/zorinshot/zorinshot/wiki</url>
+  
+  <provides>
+    <binary>zorinshot</binary>
+  </provides>
+  
+  <releases>
+    <release version="1.0.0" date="2025-08-09">
+      <description>
+        <p>Initial release of ZorinShot Enhanced</p>
+        <ul>
+          <li>Wayland-compatible screenshot capture</li>
+          <li>Interactive region selection</li>
+          <li>Annotation tools (pen, arrow, rectangle, text)</li>
+          <li>Autosave functionality with customizable locations</li>
+          <li>Comprehensive preferences system</li>
+          <li>Clipboard integration</li>
+          <li>Keyboard shortcuts</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+  
+  <content_rating type="oars-1.1" />
+  
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+    <control>touch</control>
+  </supports>
+  
+  <requires>
+    <display_length compare="ge">768</display_length>
+  </requires>
+  
+  <categories>
+    <category>Graphics</category>
+    <category>Photography</category>
+    <category>Utility</category>
+  </categories>
+  
+  <keywords>
+    <keyword>screenshot</keyword>
+    <keyword>capture</keyword>
+    <keyword>annotation</keyword>
+    <keyword>autosave</keyword>
+    <keyword>wayland</keyword>
+    <keyword>editing</keyword>
+  </keywords>
+</component>
+

@@ -1,0 +1,101 @@
+app-id: com.github.zorinshot.ZorinShot
+runtime: org.gnome.Platform
+runtime-version: '46'
+sdk: org.gnome.Sdk
+command: zorinshot
+finish-args:
+  # X11 + XShm access
+  - --share=ipc
+  - --socket=x11
+  # Wayland access
+  - --socket=wayland
+  # Access to screenshot portals
+  - --talk-name=org.freedesktop.portal.Desktop
+  - --talk-name=org.freedesktop.portal.Screenshot
+  # File system access for saving screenshots
+  - --filesystem=home
+  - --filesystem=xdg-desktop
+  - --filesystem=xdg-pictures
+  - --filesystem=xdg-documents
+  # Network access for potential upload features
+  - --share=network
+  # Audio access (for notification sounds if added later)
+  - --socket=pulseaudio
+  # Device access for screenshot tools
+  - --device=dri
+  # Access to clipboard
+  - --talk-name=org.freedesktop.portal.Clipboard
+  # Access to system theme
+  - --talk-name=org.freedesktop.portal.Settings
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /man
+  - /share/doc
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - '*.la'
+  - '*.a'
+
+modules:
+  - name: python3-pillow
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} "pillow" --no-build-isolation
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/cd/74/ad3d526f3bf7b6d3f408b73fde271ec69dfac8b81341a318ce825f2b3812/pillow-10.4.0.tar.gz
+        sha256: 166c1cd4d24309b30d61f79f4a9114b7b2313d7450912277855ff5dfd7cd4a06
+
+  - name: python3-requests
+    buildsystem: simple
+    build-commands:
+      - pip3 install --verbose --exists-action=i --no-index --find-links="file://${PWD}"
+        --prefix=${FLATPAK_DEST} "requests" --no-build-isolation
+    sources:
+      - type: file
+        url: https://files.pythonhosted.org/packages/63/70/2bf7780ad2d390a8d301ad0b550f1581eadbd9a20f896afe06353c2a2913/requests-2.32.3.tar.gz
+        sha256: 55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760
+
+  - name: zorinshot
+    buildsystem: simple
+    build-commands:
+      # Install Python modules
+      - install -Dm644 wayland_screenshot_simple.py ${FLATPAK_DEST}/lib/zorinshot/wayland_screenshot_simple.py
+      - install -Dm644 zorinshot_settings.py ${FLATPAK_DEST}/lib/zorinshot/zorinshot_settings.py
+      - install -Dm644 zorinshot_preferences.py ${FLATPAK_DEST}/lib/zorinshot/zorinshot_preferences.py
+      - install -Dm644 zorinshot_enhanced.py ${FLATPAK_DEST}/lib/zorinshot/zorinshot_enhanced.py
+      
+      # Install launcher script
+      - install -Dm755 zorinshot ${FLATPAK_DEST}/bin/zorinshot
+      
+      # Install desktop file
+      - install -Dm644 com.github.zorinshot.ZorinShot.desktop ${FLATPAK_DEST}/share/applications/com.github.zorinshot.ZorinShot.desktop
+      
+      # Install icon
+      - install -Dm644 com.github.zorinshot.ZorinShot.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/com.github.zorinshot.ZorinShot.svg
+      
+      # Install AppStream metadata
+      - install -Dm644 com.github.zorinshot.ZorinShot.metainfo.xml ${FLATPAK_DEST}/share/metainfo/com.github.zorinshot.ZorinShot.metainfo.xml
+
+    sources:
+      - type: file
+        path: wayland_screenshot_simple.py
+      - type: file
+        path: zorinshot_settings.py
+      - type: file
+        path: zorinshot_preferences.py
+      - type: file
+        path: zorinshot_enhanced.py
+      - type: file
+        path: zorinshot
+      - type: file
+        path: com.github.zorinshot.ZorinShot.desktop
+      - type: file
+        path: com.github.zorinshot.ZorinShot.svg
+      - type: file
+        path: com.github.zorinshot.ZorinShot.metainfo.xml
+

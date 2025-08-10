@@ -1,0 +1,12 @@
+#!/bin/bash
+# ZorinShot Flatpak Launcher
+
+# Set up Python path
+export PYTHONPATH="/app/lib/zorinshot:$PYTHONPATH"
+
+# Change to the application directory
+cd /app/lib/zorinshot
+
+# Run the application
+exec python3 zorinshot_enhanced.py "$@"
+

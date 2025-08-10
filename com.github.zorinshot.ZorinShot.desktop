@@ -1,0 +1,14 @@
+[Desktop Entry]
+Name=ZorinShot
+GenericName=Screenshot Tool
+Comment=Wayland-compatible screenshot tool with autosave and annotation features
+Keywords=screenshot;capture;annotation;autosave;wayland;
+Exec=zorinshot
+Icon=com.github.zorinshot.ZorinShot
+Terminal=false
+Type=Application
+Categories=Graphics;Photography;Utility;
+StartupNotify=true
+MimeType=image/png;image/jpeg;
+X-GNOME-UsesNotifications=true
+
